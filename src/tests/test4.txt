@@ -1,0 +1,88 @@
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../services/products.service';
+import { NgFor, NgIf } from '@angular/common';
+
+
+@Component({
+  selector: 'app-products',
+  imports: [NgFor,NgIf],
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.css'
+})
+export class ProductsComponent implements OnInit{
+  items: any[] = [];
+  selectedItem:any=null;
+
+  constructor(private productsService: ProductsService) { }
+  ngOnInit(): void {
+     this.items = this.productsService.getProducts();
+  }
+
+  onselect(item: any): void {
+    this.selectedItem = item;
+  }
+}
+
+
+<div class="container">
+
+    <div class="product-list">
+      <div *ngFor="let item of items" class="product-card" (click)="onselect(item)">
+        <img [src]="item.image" alt="{{ item.name }}">
+        <h3>{{item.name }}</h3>
+      </div>
+    </div>
+
+
+    <div class="product-details" *ngIf="selectedItem">
+      <h2>{{ selectedItem.name }}</h2>
+      <img [src]="selectedItem.image" alt="{{ selectedItem.name }}">
+      <p>price: {{ selectedItem.price }} sp </p>
+      <p>colorItem: {{ selectedItem.color }}</p>
+    </div>
+  </div>
+
+  .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .product-list {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product-card {
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+    }
+
+
+    .product-details {
+      width: 50%;
+      height: 400px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      text-align: center;
+      position: absolute;
+      left: 200px;
+      top: 180px;
+    }
+
+    .product-details img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
