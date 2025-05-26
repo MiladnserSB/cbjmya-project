@@ -1,0 +1,8 @@
+=== COMPILATION ERROR ===
+Timestamp: 2025-05-25 00:25:53
+Line: 7
+Error: Undefined import: ProductsComponent
+=== COMPILATION ERROR ===
+Timestamp: 2025-05-25 00:26:12
+Line: 7
+Error: Undefined import: ProductsComponenaadsdt

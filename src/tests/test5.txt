@@ -1,0 +1,27 @@
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  imports: [],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
+})
+export class HeaderComponent {
+title=signal('WELCOME to my store');
+}
+
+
+<header>
+    <nav>{{title()}}</nav>
+</header>
+
+
+header{
+    display: flex;
+    padding-inline: 16px;
+    padding-block: 8px;
+    background-color: black;
+    align-items: center;
+    justify-content: space-between;
+    color: aliceblue;
+    }
